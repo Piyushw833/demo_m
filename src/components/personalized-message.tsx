@@ -1,3 +1,4 @@
+
 'use client';
 
 import * as React from 'react';
@@ -7,9 +8,10 @@ import { Button } from '@/components/ui/button';
 interface PersonalizedMessageProps {
   girlfriendName: string;
   messages: string[]; // Array of message strings for each page
+  yourName: string; // Add prop for your name
 }
 
-const PersonalizedMessage: React.FC<PersonalizedMessageProps> = ({ girlfriendName, messages }) => {
+const PersonalizedMessage: React.FC<PersonalizedMessageProps> = ({ girlfriendName, messages, yourName }) => {
   const [currentPage, setCurrentPage] = React.useState(0);
   const totalPages = messages.length;
 
@@ -21,7 +23,7 @@ const PersonalizedMessage: React.FC<PersonalizedMessageProps> = ({ girlfriendNam
     setCurrentPage((prev) => Math.max(prev - 1, 0));
   };
 
-  // Add placeholder if messages array is empty
+  // Add placeholder if messages array is empty or page index is out of bounds
   const currentMessage = messages[currentPage] || "No message provided for this page.";
 
   return (
@@ -73,7 +75,7 @@ const PersonalizedMessage: React.FC<PersonalizedMessageProps> = ({ girlfriendNam
               <Heart className="w-6 h-6 animate-pulse fill-current" />
             </div>
             <p className="text-lg font-medium text-primary-foreground">
-              Piyush {/* Replace with your actual name */}
+              {yourName} {/* Use the yourName prop */}
             </p>
           </div>
         )}

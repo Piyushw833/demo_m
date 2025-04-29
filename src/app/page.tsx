@@ -1,39 +1,22 @@
+
 'use client';
 
 import * as React from 'react';
 import { MessageCircleHeart, Images, Feather } from 'lucide-react';
 import PersonalizedMessage from '@/components/personalized-message';
 import PhotoSlideshow from '@/components/photo-slideshow';
-import StaticShayari from '@/components/static-shayari'; // Import the new static component
+import StaticShayari from '@/components/static-shayari';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Toaster } from '@/components/ui/toaster';
 
-// Define girlfriend's name here or fetch from an environment variable/config
+// Define girlfriend's name here
 const GIRLFRIEND_NAME = 'Maitriii ❤️';
 
-// Define photos for the slideshow (now 18 photos) - MAKE SURE THESE PATHS ARE CORRECT IN YOUR /public FOLDER
-// Example: If images are in /public/images/, use '/images/IMG-XXXX.jpg'
-const photos = [
-  '/images/IMG-20250429-WA0112.jpg', // Replace with actual paths in /public
-  '/images/IMG-20250429-WA0113.jpg',
-  '/images/IMG-20250429-WA0114.jpg',
-  '/images/IMG-20250429-WA0115.jpg',
-  '/images/IMG-20250429-WA0116.jpg',
-  '/images/IMG-20250429-WA0117.jpg',
-  '/images/IMG-20250429-WA0118.jpg',
-  '/images/IMG-20250429-WA0119.jpg',
-  '/images/IMG-20250429-WA0120.jpg',
-  '/images/IMG-20250429-WA0121.jpg',
-  '/images/IMG-20250429-WA0122.jpg', // Added more placeholders up to 18
-  '/images/IMG-20250429-WA0123.jpg',
-  '/images/IMG-20250429-WA0124.jpg',
-  '/images/IMG-20250429-WA0125.jpg',
-  '/images/IMG-20250429-WA0126.jpg',
-  '/images/IMG-20250429-WA0127.jpg',
-  '/images/IMG-20250429-WA0128.jpg',
-  '/images/IMG-20250429-WA0129.jpg',
-];
+// Define photos for the slideshow using placeholder URLs
+// Replace these with your actual image paths in the /public folder when possible
+// e.g., '/images/your-image-name.jpg'
+const photos = Array.from({ length: 18 }, (_, i) => `https://picsum.photos/seed/${i + 1}/600/400`);
 
 // Define the multi-page message content
 const messages = [
@@ -67,17 +50,17 @@ const messages = [
   "I loveeee youuuu manuuu babbyyy 😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘 Missssingg uuuuuu cant express🫠🥹 Taro dearest navra, Pissssss",
 ];
 
-
 // Placeholder background music URL (replace with an actual audio file URL)
 const backgroundMusicUrl = '/background-music.mp3'; // Ensure you have this file in /public
 
 // Define the static shayari text here
-const STATIC_SHAYARI_TEXT = `Your eyes twinkle like the stars so bright,
-Filling my world with pure delight.
-On your birthday, my love, my heart sings,
-Happy Birthday, my queen, joy you bring!
-
-(Replace this with your actual shayari)`;
+const STATIC_SHAYARI_TEXT = `
+Tu ek chand ka tukda hai jispe dag nai hai
+Tu ek chand ka tukda hai jispe dag nai hai
+Tu jisme na ho wo fulon ka baug nai hai
+Aur wo ful hi kya jo tuze dekhke sharma na jae
+Aur wo ful hi kya jo tuze dekhke sharma na jae
+Tere ye khubsurat chehre ka koi jawab nai hai😘`;
 
 export default function SweetSurprisePage() {
   return (
@@ -86,7 +69,7 @@ export default function SweetSurprisePage() {
         <Card className="w-full max-w-2xl shadow-xl rounded-xl overflow-hidden animate-fade-in">
           <CardHeader className="bg-primary text-primary-foreground p-6 text-center">
             <CardTitle className="text-3xl font-bold tracking-tight">
-              Happy Birthday Maitri Babyyy ❤️ {/* Updated title */}
+              Happy Birthday Maitri Babyyy ❤️ {/* Heart emoji added */}
             </CardTitle>
           </CardHeader>
           <CardContent className="p-0">
@@ -104,11 +87,11 @@ export default function SweetSurprisePage() {
               </TabsList>
               <div className="p-6">
                 <TabsContent value="message" className="animate-slide-in">
-                   {/* Pass messages array */}
-                  <PersonalizedMessage girlfriendName={GIRLFRIEND_NAME} messages={messages} />
+                  {/* Pass messages array and your name */}
+                  <PersonalizedMessage girlfriendName={GIRLFRIEND_NAME} messages={messages} yourName="Piyush" />
                 </TabsContent>
                 <TabsContent value="slideshow" className="animate-slide-in">
-                  {/* Make sure photo paths in the 'photos' array above are correct and files exist in /public */}
+                  {/* Use the photos array with placeholder URLs */}
                   <PhotoSlideshow photos={photos} musicUrl={backgroundMusicUrl} />
                 </TabsContent>
                 <TabsContent value="shayari" className="animate-slide-in">
