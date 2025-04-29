@@ -12,14 +12,38 @@ import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX } from 'lucide
 interface PhotoSlideshowProps {
   photos: string[];
   musicUrl: string;
+  playMusic: boolean; // Added prop to control music playback
 }
 
-const PhotoSlideshow: React.FC<PhotoSlideshowProps> = ({ photos, musicUrl }) => {
+const PhotoSlideshow: React.FC<PhotoSlideshowProps> = ({ photos, musicUrl, playMusic }) => {
   // Increase the delay to 6000ms (6 seconds) to slow down the slideshow
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay({ delay: 6000, stopOnInteraction: false })]);
   const audioRef = React.useRef<HTMLAudioElement>(null);
-  const [isPlaying, setIsPlaying] = React.useState(false); // Initial state is not playing
+  const [isPlaying, setIsPlaying] = React.useState(false); // Controlled by external prop
   const [isMuted, setIsMuted] = React.useState(false);
+  const [hasInteracted, setHasInteracted] = React.useState(false); // Track user interaction
+
+
+  React.useEffect(() => {
+    // Only attempt to play if the playMusic prop is true and user hasn't interacted yet
+    if (playMusic && audioRef.current && !hasInteracted) {
+        audioRef.current.muted = false; // Ensure not muted initially
+        setIsMuted(false);
+        audioRef.current.play()
+          .then(() => {
+            setIsPlaying(true);
+          })
+          .catch(error => {
+            console.warn("Audio autoplay failed. User interaction might be required.", error);
+            setIsPlaying(false); // Stay in paused state if autoplay fails
+          });
+    } else if (!playMusic && audioRef.current) {
+        // If playMusic becomes false, pause the music
+        audioRef.current.pause();
+        setIsPlaying(false);
+    }
+    // Intentionally not including hasInteracted in dependencies to only run play attempt once based on prop
+  }, [playMusic]); // Depend only on playMusic prop
 
   const scrollPrev = React.useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -30,6 +54,7 @@ const PhotoSlideshow: React.FC<PhotoSlideshowProps> = ({ photos, musicUrl }) => 
   }, [emblaApi]);
 
   const togglePlayPause = () => {
+    setHasInteracted(true); // Mark interaction
     if (audioRef.current) {
       if (isPlaying) {
         audioRef.current.pause();
@@ -44,30 +69,15 @@ const PhotoSlideshow: React.FC<PhotoSlideshowProps> = ({ photos, musicUrl }) => 
   };
 
    const toggleMute = () => {
+     setHasInteracted(true); // Mark interaction
      if (audioRef.current) {
        audioRef.current.muted = !audioRef.current.muted;
        setIsMuted(audioRef.current.muted);
      }
    };
 
+
    React.useEffect(() => {
-     // Attempt to autoplay when the component mounts
-     if (audioRef.current) {
-       // Ensure the element is not muted by default if we want autoplay with sound
-       audioRef.current.muted = false;
-       setIsMuted(false);
-
-       audioRef.current.play()
-         .then(() => {
-           setIsPlaying(true); // Update state if play succeeds
-         })
-         .catch(error => {
-           console.warn("Audio autoplay failed. User interaction might be required.", error);
-           // Autoplay was prevented, user needs to click play manually
-           setIsPlaying(false);
-         });
-     }
-
      // Clean up audio element when component unmounts
      return () => {
        if (audioRef.current) {
@@ -124,6 +134,7 @@ const PhotoSlideshow: React.FC<PhotoSlideshowProps> = ({ photos, musicUrl }) => 
 
           {/* Audio Element (Hidden but controllable) */}
           {/* Removed the 'autoPlay' attribute to control via useEffect */}
+          {/* Make sure preload is "auto" or "metadata" */}
           <audio ref={audioRef} src={musicUrl} loop preload="auto" />
 
 
@@ -144,3 +155,4 @@ const PhotoSlideshow: React.FC<PhotoSlideshowProps> = ({ photos, musicUrl }) => 
 };
 
 export default PhotoSlideshow;
+

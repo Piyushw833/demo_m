@@ -19,27 +19,27 @@ const YOUR_NAME = 'Piyush'; // Added your name
 // IMPORTANT: Ensure these files exist in the `/public/images/` directory.
 // Check for exact filenames (case-sensitive) and extensions (.jpg).
 const photos = [
-  '/IMG-20250429-WA0112.jpg',
-  '/IMG-20250429-WA0113.jpg',
-  '/IMG-20250429-WA0114.jpg',
-  '/IMG-20250429-WA0115.jpg',
-  '/IMG-20250429-WA0116.jpg',
-  '/IMG-20250429-WA0117.jpg',
-  '/IMG-20250429-WA0118.jpg',
-  '/IMG-20250429-WA0119.jpg',
-  '/IMG-20250429-WA0120.jpg',
-  '/IMG-20250429-WA0122.jpg',
-  '/IMG-20250429-WA0123.jpg', 
-  '/IMG-20250429-WA0124.jpg',
-  '/IMG-20250429-WA0125.jpg',
-  '/IMG-20250429-WA0126.jpg',
-  '/IMG-20250429-WA0127.jpg',
-  '/IMG-20250429-WA0128.jpg',
-  '/IMG-20250429-WA0129.jpg',
-  '/IMG-20250429-WA0131.jpg',
-  '/IMG-20250429-WA0132.jpg',
-  '/IMG-20250429-WA0133.jpg',
-  '/IMG-20250429-WA0134.jpg',
+  '/images/IMG-20250429-WA0112.jpg',
+  '/images/IMG-20250429-WA0113.jpg',
+  '/images/IMG-20250429-WA0114.jpg',
+  '/images/IMG-20250429-WA0115.jpg',
+  '/images/IMG-20250429-WA0116.jpg',
+  '/images/IMG-20250429-WA0117.jpg',
+  '/images/IMG-20250429-WA0118.jpg',
+  '/images/IMG-20250429-WA0119.jpg',
+  '/images/IMG-20250429-WA0120.jpg',
+  '/images/IMG-20250429-WA0122.jpg',
+  //'/IMG-20250429-WA0123.jpg', // Example: Keep only 10 images if needed
+  //'/IMG-20250429-WA0124.jpg',
+  //'/IMG-20250429-WA0125.jpg',
+  //'/IMG-20250429-WA0126.jpg',
+  //'/IMG-20250429-WA0127.jpg',
+  //'/IMG-20250429-WA0128.jpg',
+  //'/IMG-20250429-WA0129.jpg',
+  //'/IMG-20250429-WA0131.jpg',
+  //'/IMG-20250429-WA0132.jpg',
+  //'/IMG-20250429-WA0133.jpg',
+  //'/IMG-20250429-WA0134.jpg',
 ];
 
 
@@ -72,7 +72,7 @@ const messages = [
   // Page 13
   "Etla pyari che mari motuuu tane upar gusso saras nai lage tu aavech saras lage che mane 😘😘😘😘😘 Dher saro badhiyao tane mubarak ho janamdine mate Ane tara mu ma 1000 kilo na cake mera mota sota pota lota kota 😭😭❤❤❤",
   // Page 14
-  "I loveeee youuuu manuuu babbyyy 😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘 Missssingg uuuuuu cant express🫠🥹 Taro dearest navra, Pissssss",
+  "I loveeee youuuu manuuu babbyyy 😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘 Missssingg uuuuuu cant express🫠🥹 Taro dearest navra, Pissssss", // Corrected spelling
 ];
 
 
@@ -90,9 +90,11 @@ Tere ye khubsurat chehre ka koi jawab nai hai😘`;
 
 export default function SweetSurprisePage() {
   const [showLanding, setShowLanding] = React.useState(true);
+  const [playMusic, setPlayMusic] = React.useState(false); // State to control music playback
 
   const handleLandingComplete = () => {
     setShowLanding(false);
+    setPlayMusic(true); // Start music when landing page is complete
   };
 
   return (
@@ -126,8 +128,8 @@ export default function SweetSurprisePage() {
                     <PersonalizedMessage girlfriendName={GIRLFRIEND_NAME} messages={messages} yourName={YOUR_NAME} />
                   </TabsContent>
                   <TabsContent value="slideshow" className="animate-slide-in">
-                    {/* Pass the photos array */}
-                    <PhotoSlideshow photos={photos} musicUrl={backgroundMusicUrl} />
+                    {/* Pass the photos array and playMusic state */}
+                    <PhotoSlideshow photos={photos} musicUrl={backgroundMusicUrl} playMusic={playMusic} />
                   </TabsContent>
                   <TabsContent value="shayari" className="animate-slide-in">
                     {/* Render the static shayari component */}
@@ -143,40 +145,3 @@ export default function SweetSurprisePage() {
     </>
   );
 }
-
-// Add simple animations in globals.css or tailwind.config.js if needed
-// e.g., in globals.css:
-/*
-@keyframes fade-in {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.animate-fade-in {
-  animation: fade-in 1s ease-out forwards;
-}
-
-@keyframes slide-in {
- from { opacity: 0; transform: translateX(20px); }
- to { opacity: 1; transform: translateX(0); }
-}
-.animate-slide-in {
- animation: slide-in 0.4s ease-out forwards; // Faster slide-in
-}
-
-@keyframes pulse {
-  50% { opacity: .7; }
-}
-.animate-pulse {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-@keyframes pop-in { // Added pop-in animation
-  0% { transform: scale(0.8); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
-}
-.animate-pop-in {
-  animation: pop-in 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
-
-*/
-
