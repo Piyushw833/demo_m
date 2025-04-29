@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 import { fontFamily } from "tailwindcss/defaultTheme"; // Import default theme
 
@@ -91,16 +92,28 @@ export default {
             },
             'pulse': { // Added pulse animation for heart icon
               '50%': { opacity: '.7' },
-            }
+            },
+            'pop-in': { // Added pop-in animation
+              '0%': { transform: 'scale(0.8)', opacity: '0' },
+              '100%': { transform: 'scale(1)', opacity: '1' },
+            },
+             'bounce': { // Added bounce animation
+              '0%, 100%': { transform: 'translateY(-25%)', animationTimingFunction: 'cubic-bezier(0.8,0,1,1)' },
+              '50%': { transform: 'translateY(0)', animationTimingFunction: 'cubic-bezier(0,0,0.2,1)' },
+            },
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out',
             'fade-in': 'fade-in 0.5s ease-out forwards',
-            'slide-in': 'slide-in 0.4s ease-out forwards',
+            'slide-in': 'slide-in 0.4s ease-out forwards', // Faster slide-in
             'pulse': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite', // Added pulse animation
+            'pop-in': 'pop-in 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards', // Added pop-in animation utility
+            'bounce': 'bounce 1s infinite', // Added bounce animation utility
   		}
   	}
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
+
+```

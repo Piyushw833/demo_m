@@ -6,6 +6,7 @@ import { MessageCircleHeart, Images, Feather } from 'lucide-react';
 import PersonalizedMessage from '@/components/personalized-message';
 import PhotoSlideshow from '@/components/photo-slideshow';
 import StaticShayari from '@/components/static-shayari'; // Import the static component
+import LandingPage from '@/components/landing-page'; // Import the LandingPage component
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Toaster } from '@/components/ui/toaster';
@@ -17,26 +18,28 @@ const YOUR_NAME = 'Piyush'; // Added your name
 // Define photos for the slideshow.
 // IMPORTANT: Ensure these files exist in the `/public/images/` directory.
 // Check for exact filenames (case-sensitive) and extensions (.jpg).
-// If images are still not showing, try restarting the development server (Ctrl+C and then `npm run dev`).
 const photos = [
-  '/IMG-20250429-WA0112.jpg',
-  '/IMG-20250429-WA0113.jpg',
-  '/IMG-20250429-WA0114.jpg',
-  '/IMG-20250429-WA0115.jpg',
-  '/IMG-20250429-WA0116.jpg',
-  '/IMG-20250429-WA0117.jpg',
-  '/IMG-20250429-WA0118.jpg',
-  '/IMG-20250429-WA0119.jpg',
-  '/IMG-20250429-WA0120.jpg',
-  '/IMG-20250429-WA0121.jpg',
-  '/IMG-20250429-WA0122.jpg',
-  '/IMG-20250429-WA0123.jpg',
-  '/IMG-20250429-WA0124.jpg',
-  '/IMG-20250429-WA0125.jpg',
-  '/IMG-20250429-WA0126.jpg',
-  '/IMG-20250429-WA0127.jpg',
-  '/IMG-20250429-WA0128.jpg',
-  '/IMG-20250429-WA0129.jpg',
+  '/images/IMG-20250429-WA0112.jpg',
+  '/images/IMG-20250429-WA0113.jpg',
+  '/images/IMG-20250429-WA0114.jpg',
+  '/images/IMG-20250429-WA0115.jpg',
+  '/images/IMG-20250429-WA0116.jpg',
+  '/images/IMG-20250429-WA0117.jpg',
+  '/images/IMG-20250429-WA0118.jpg',
+  '/images/IMG-20250429-WA0119.jpg',
+  '/images/IMG-20250429-WA0120.jpg',
+  '/images/IMG-20250429-WA0122.jpg',
+  // '/images/IMG-20250429-WA0123.jpg', // Example of commented out image
+  // '/images/IMG-20250429-WA0124.jpg',
+  // '/images/IMG-20250429-WA0125.jpg',
+  // '/images/IMG-20250429-WA0126.jpg',
+  // '/images/IMG-20250429-WA0127.jpg',
+  // '/images/IMG-20250429-WA0128.jpg',
+  // '/images/IMG-20250429-WA0129.jpg',
+  // '/images/IMG-20250429-WA0131.jpg',
+  // '/images/IMG-20250429-WA0132.jpg',
+  // '/images/IMG-20250429-WA0133.jpg',
+  // '/images/IMG-20250429-WA0134.jpg',
 ];
 
 
@@ -86,45 +89,55 @@ Aur wo ful hi kya jo tuze dekhke sharma na jae
 Tere ye khubsurat chehre ka koi jawab nai hai😘`;
 
 export default function SweetSurprisePage() {
+  const [showLanding, setShowLanding] = React.useState(true);
+
+  const handleLandingComplete = () => {
+    setShowLanding(false);
+  };
+
   return (
     <>
       <main className="flex min-h-screen flex-col items-center justify-center p-6 md:p-12 bg-gradient-to-br from-background to-secondary">
-        <Card className="w-full max-w-2xl shadow-xl rounded-xl overflow-hidden animate-fade-in">
-          <CardHeader className="bg-primary text-primary-foreground p-6 text-center">
-            <CardTitle className="text-3xl font-bold tracking-tight">
-              Happy Birthday Maitri Babyyy ❤️ {/* Updated title */}
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="p-0">
-            <Tabs defaultValue="message" className="w-full">
-              <TabsList className="grid w-full grid-cols-3 rounded-none">
-                <TabsTrigger value="message" className="flex items-center gap-2 py-3 text-sm md:text-base">
-                  <MessageCircleHeart className="w-5 h-5" /> Message
-                </TabsTrigger>
-                <TabsTrigger value="slideshow" className="flex items-center gap-2 py-3 text-sm md:text-base">
-                  <Images className="w-5 h-5" /> Photos
-                </TabsTrigger>
-                <TabsTrigger value="shayari" className="flex items-center gap-2 py-3 text-sm md:text-base">
-                  <Feather className="w-5 h-5" /> Shayari
-                </TabsTrigger>
-              </TabsList>
-              <div className="p-6">
-                <TabsContent value="message" className="animate-slide-in">
-                   {/* Pass messages array and your name */}
-                  <PersonalizedMessage girlfriendName={GIRLFRIEND_NAME} messages={messages} yourName={YOUR_NAME} />
-                </TabsContent>
-                <TabsContent value="slideshow" className="animate-slide-in">
-                  {/* Pass the photos array */}
-                  <PhotoSlideshow photos={photos} musicUrl={backgroundMusicUrl} />
-                </TabsContent>
-                <TabsContent value="shayari" className="animate-slide-in">
-                  {/* Render the static shayari component */}
-                  <StaticShayari shayariText={STATIC_SHAYARI_TEXT} />
-                </TabsContent>
-              </div>
-            </Tabs>
-          </CardContent>
-        </Card>
+        {showLanding ? (
+          <LandingPage onComplete={handleLandingComplete} />
+        ) : (
+          <Card className="w-full max-w-2xl shadow-xl rounded-xl overflow-hidden animate-fade-in">
+            <CardHeader className="bg-primary text-primary-foreground p-6 text-center">
+              <CardTitle className="text-3xl font-bold tracking-tight">
+                Happy Birthday Maitri Babyyy ❤️ {/* Updated title */}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-0">
+              <Tabs defaultValue="message" className="w-full">
+                <TabsList className="grid w-full grid-cols-3 rounded-none">
+                  <TabsTrigger value="message" className="flex items-center gap-2 py-3 text-sm md:text-base">
+                    <MessageCircleHeart className="w-5 h-5" /> Message
+                  </TabsTrigger>
+                  <TabsTrigger value="slideshow" className="flex items-center gap-2 py-3 text-sm md:text-base">
+                    <Images className="w-5 h-5" /> Photos
+                  </TabsTrigger>
+                  <TabsTrigger value="shayari" className="flex items-center gap-2 py-3 text-sm md:text-base">
+                    <Feather className="w-5 h-5" /> Shayari
+                  </TabsTrigger>
+                </TabsList>
+                <div className="p-6">
+                  <TabsContent value="message" className="animate-slide-in">
+                     {/* Pass messages array and your name */}
+                    <PersonalizedMessage girlfriendName={GIRLFRIEND_NAME} messages={messages} yourName={YOUR_NAME} />
+                  </TabsContent>
+                  <TabsContent value="slideshow" className="animate-slide-in">
+                    {/* Pass the photos array */}
+                    <PhotoSlideshow photos={photos} musicUrl={backgroundMusicUrl} />
+                  </TabsContent>
+                  <TabsContent value="shayari" className="animate-slide-in">
+                    {/* Render the static shayari component */}
+                    <StaticShayari shayariText={STATIC_SHAYARI_TEXT} />
+                  </TabsContent>
+                </div>
+              </Tabs>
+            </CardContent>
+          </Card>
+        )}
       </main>
       <Toaster />
     </>
@@ -147,8 +160,24 @@ export default function SweetSurprisePage() {
  to { opacity: 1; transform: translateX(0); }
 }
 .animate-slide-in {
- animation: slide-in 2s ease-out forwards;
+ animation: slide-in 0.4s ease-out forwards; // Faster slide-in
 }
+
+@keyframes pulse {
+  50% { opacity: .7; }
+}
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pop-in { // Added pop-in animation
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.animate-pop-in {
+  animation: pop-in 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
 */
 
-
+```

@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -101,3 +102,5 @@ body {
       stroke: hsl(var(--accent));
    }
 }
+
+/* Removed @layer utilities block for animations as they are defined in tailwind.config.ts */
