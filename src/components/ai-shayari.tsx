@@ -4,7 +4,7 @@ import * as React from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
-import { generatePoem, type GeneratePoemInput } from '@/ai/flows/generate-poem'; // Correct import path
+import { generateShayari, type GenerateShayariInput } from '@/ai/flows/generate-shayari'; // Updated import path and types
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
@@ -13,19 +13,18 @@ import { Loader2, Wand2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
-
 const formSchema = z.object({
   relationshipDetails: z.string().min(10, {
     message: 'Please share a bit more about your relationship (at least 10 characters).',
   }).max(500, { message: 'Details cannot exceed 500 characters.' }),
 });
 
-interface AiPoemProps {
+interface AiShayariProps {
   girlfriendName: string;
 }
 
-const AiPoem: React.FC<AiPoemProps> = ({ girlfriendName }) => {
-  const [poem, setPoem] = React.useState<string | null>(null);
+const AiShayari: React.FC<AiShayariProps> = ({ girlfriendName }) => {
+  const [shayari, setShayari] = React.useState<string | null>(null); // Renamed state variable
   const [isLoading, setIsLoading] = React.useState(false);
   const { toast } = useToast();
 
@@ -38,29 +37,29 @@ const AiPoem: React.FC<AiPoemProps> = ({ girlfriendName }) => {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
-    setPoem(null); // Clear previous poem
+    setShayari(null); // Clear previous shayari
 
-    const inputData: GeneratePoemInput = {
+    const inputData: GenerateShayariInput = { // Use updated input type
       girlfriendName,
       relationshipDetails: values.relationshipDetails,
     };
 
     try {
-      const result = await generatePoem(inputData);
-      setPoem(result.poem);
+      const result = await generateShayari(inputData); // Call updated function
+      setShayari(result.shayari); // Use updated output field name
        toast({
-         title: '✨ Poem Generated!',
-         description: 'Your personalized poem is ready below.',
-         variant: 'default', // Or use a custom success variant if defined
+         title: '✨ Shayari Generated!', // Updated toast title
+         description: 'Your personalized shayari is ready below.', // Updated toast description
+         variant: 'default',
        });
     } catch (error) {
-      console.error('Error generating poem:', error);
+      console.error('Error generating shayari:', error); // Updated error message
       toast({
         title: '😔 Oh no!',
-        description: 'Something went wrong while creating the poem. Please try again.',
+        description: 'Something went wrong while creating the shayari. Please try again.', // Updated toast description
         variant: 'destructive',
       });
-       setPoem("Sorry, I couldn't create a poem right now. Maybe tell me something different?");
+       setShayari("Sorry, I couldn't create a shayari right now. Maybe tell me something different?"); // Updated fallback message
     } finally {
       setIsLoading(false);
     }
@@ -74,7 +73,7 @@ const AiPoem: React.FC<AiPoemProps> = ({ girlfriendName }) => {
              <Wand2 className="w-5 h-5" /> A Little Magic Just For You
            </CardTitle>
            <CardDescription className="text-muted-foreground">
-            Share a few details or memories, and I'll write a special poem for {girlfriendName}.
+            Share a few details or memories, and I'll write a special shayari for {girlfriendName}. {/* Updated description */}
           </CardDescription>
          </CardHeader>
         <Form {...form}>
@@ -106,12 +105,12 @@ const AiPoem: React.FC<AiPoemProps> = ({ girlfriendName }) => {
                 {isLoading ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Conjuring Poem...
+                    Conjuring Shayari... {/* Updated button text */}
                   </>
                 ) : (
                   <>
                    <Wand2 className="mr-2 h-4 w-4" />
-                    Generate Poem
+                    Generate Shayari {/* Updated button text */}
                   </>
                 )}
               </Button>
@@ -120,15 +119,16 @@ const AiPoem: React.FC<AiPoemProps> = ({ girlfriendName }) => {
         </Form>
       </Card>
 
-      {poem && (
+      {shayari && ( // Use updated state variable
         <Card className="mt-6 bg-secondary shadow-inner animate-fade-in">
           <CardHeader>
-            <CardTitle className="text-lg font-semibold text-secondary-foreground">Your Custom Poem:</CardTitle>
+            <CardTitle className="text-lg font-semibold text-secondary-foreground">Your Custom Shayari:</CardTitle> {/* Updated card title */}
           </CardHeader>
           <CardContent>
              <ScrollArea className="h-48 w-full rounded-md border border-primary/30 p-4 bg-card">
+               {/* Consider using a font better suited for Hindi/Urdu if needed */}
                <pre className="whitespace-pre-wrap text-sm font-serif leading-relaxed text-card-foreground">
-                 {poem}
+                 {shayari} {/* Use updated state variable */}
                </pre>
              </ScrollArea>
           </CardContent>
@@ -138,4 +138,4 @@ const AiPoem: React.FC<AiPoemProps> = ({ girlfriendName }) => {
   );
 };
 
-export default AiPoem;
+export default AiShayari; // Renamed export

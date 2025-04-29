@@ -1,1 +1,1 @@
-import '@/ai/flows/generate-poem.ts';
+import '@/ai/flows/generate-shayari.ts'; // Updated import
