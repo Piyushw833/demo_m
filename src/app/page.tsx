@@ -5,18 +5,37 @@ import * as React from 'react';
 import { MessageCircleHeart, Images, Feather } from 'lucide-react';
 import PersonalizedMessage from '@/components/personalized-message';
 import PhotoSlideshow from '@/components/photo-slideshow';
-import StaticShayari from '@/components/static-shayari';
+import StaticShayari from '@/components/static-shayari'; // Import the static component
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Toaster } from '@/components/ui/toaster';
 
-// Define girlfriend's name here
+// Define girlfriend's name here or fetch from an environment variable/config
 const GIRLFRIEND_NAME = 'Maitriii ❤️';
+const YOUR_NAME = 'Piyush'; // Added your name
 
-// Define photos for the slideshow using placeholder URLs
-// Replace these with your actual image paths in the /public folder when possible
-// e.g., '/images/your-image-name.jpg'
-const photos = Array.from({ length: 18 }, (_, i) => `https://picsum.photos/seed/${i + 1}/600/400`);
+// Define photos for the slideshow (now 18 photos) - MAKE SURE THESE PATHS ARE CORRECT IN YOUR /public FOLDER
+// Example: If images are in /public/images/, use '/images/IMG-XXXX.jpg'
+const photos = [
+  '/images/IMG-20250429-WA0112.jpg', // Reverted to original paths
+  '/images/IMG-20250429-WA0113.jpg',
+  '/images/IMG-20250429-WA0114.jpg',
+  '/images/IMG-20250429-WA0115.jpg',
+  '/images/IMG-20250429-WA0116.jpg',
+  '/images/IMG-20250429-WA0117.jpg',
+  '/images/IMG-20250429-WA0118.jpg',
+  '/images/IMG-20250429-WA0119.jpg',
+  '/images/IMG-20250429-WA0120.jpg',
+  '/images/IMG-20250429-WA0121.jpg',
+  '/images/IMG-20250429-WA0122.jpg',
+  '/images/IMG-20250429-WA0123.jpg',
+  '/images/IMG-20250429-WA0124.jpg',
+  '/images/IMG-20250429-WA0125.jpg',
+  '/images/IMG-20250429-WA0126.jpg',
+  '/images/IMG-20250429-WA0127.jpg',
+  '/images/IMG-20250429-WA0128.jpg',
+  '/images/IMG-20250429-WA0129.jpg',
+];
 
 // Define the multi-page message content
 const messages = [
@@ -50,6 +69,7 @@ const messages = [
   "I loveeee youuuu manuuu babbyyy 😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘 Missssingg uuuuuu cant express🫠🥹 Taro dearest navra, Pissssss",
 ];
 
+
 // Placeholder background music URL (replace with an actual audio file URL)
 const backgroundMusicUrl = '/background-music.mp3'; // Ensure you have this file in /public
 
@@ -69,7 +89,7 @@ export default function SweetSurprisePage() {
         <Card className="w-full max-w-2xl shadow-xl rounded-xl overflow-hidden animate-fade-in">
           <CardHeader className="bg-primary text-primary-foreground p-6 text-center">
             <CardTitle className="text-3xl font-bold tracking-tight">
-              Happy Birthday Maitri Babyyy ❤️ {/* Heart emoji added */}
+              Happy Birthday Maitri Babyyy ❤️ {/* Updated title */}
             </CardTitle>
           </CardHeader>
           <CardContent className="p-0">
@@ -87,11 +107,11 @@ export default function SweetSurprisePage() {
               </TabsList>
               <div className="p-6">
                 <TabsContent value="message" className="animate-slide-in">
-                  {/* Pass messages array and your name */}
-                  <PersonalizedMessage girlfriendName={GIRLFRIEND_NAME} messages={messages} yourName="Piyush" />
+                   {/* Pass messages array and your name */}
+                  <PersonalizedMessage girlfriendName={GIRLFRIEND_NAME} messages={messages} yourName={YOUR_NAME} />
                 </TabsContent>
                 <TabsContent value="slideshow" className="animate-slide-in">
-                  {/* Use the photos array with placeholder URLs */}
+                  {/* Make sure photo paths in the 'photos' array above are correct and files exist in /public */}
                   <PhotoSlideshow photos={photos} musicUrl={backgroundMusicUrl} />
                 </TabsContent>
                 <TabsContent value="shayari" className="animate-slide-in">
