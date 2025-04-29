@@ -18,7 +18,7 @@ const PhotoSlideshow: React.FC<PhotoSlideshowProps> = ({ photos, musicUrl }) => 
   // Increase the delay to 6000ms (6 seconds) to slow down the slideshow
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay({ delay: 6000, stopOnInteraction: false })]);
   const audioRef = React.useRef<HTMLAudioElement>(null);
-  const [isPlaying, setIsPlaying] = React.useState(false);
+  const [isPlaying, setIsPlaying] = React.useState(false); // Initial state is not playing
   const [isMuted, setIsMuted] = React.useState(false);
 
   const scrollPrev = React.useCallback(() => {
@@ -34,8 +34,11 @@ const PhotoSlideshow: React.FC<PhotoSlideshowProps> = ({ photos, musicUrl }) => 
       if (isPlaying) {
         audioRef.current.pause();
       } else {
-        audioRef.current.play().catch(error => console.error("Audio play failed:", error)); // Basic error handling
+        // Attempt to play again if wasn't playing (e.g., if autoplay failed)
+        audioRef.current.play().catch(error => console.error("Audio play failed:", error));
       }
+      // Toggle state based on user action, even if play() fails immediately
+      // The browser might eventually play or pause based on internal state.
       setIsPlaying(!isPlaying);
     }
   };
@@ -48,6 +51,23 @@ const PhotoSlideshow: React.FC<PhotoSlideshowProps> = ({ photos, musicUrl }) => 
    };
 
    React.useEffect(() => {
+     // Attempt to autoplay when the component mounts
+     if (audioRef.current) {
+       // Ensure the element is not muted by default if we want autoplay with sound
+       audioRef.current.muted = false;
+       setIsMuted(false);
+
+       audioRef.current.play()
+         .then(() => {
+           setIsPlaying(true); // Update state if play succeeds
+         })
+         .catch(error => {
+           console.warn("Audio autoplay failed. User interaction might be required.", error);
+           // Autoplay was prevented, user needs to click play manually
+           setIsPlaying(false);
+         });
+     }
+
      // Clean up audio element when component unmounts
      return () => {
        if (audioRef.current) {
@@ -56,7 +76,7 @@ const PhotoSlideshow: React.FC<PhotoSlideshowProps> = ({ photos, musicUrl }) => 
          audioRef.current.src = ''; // Release audio resource
        }
      };
-   }, []);
+   }, []); // Empty dependency array ensures this runs only once on mount
 
 
   return (
@@ -67,12 +87,12 @@ const PhotoSlideshow: React.FC<PhotoSlideshowProps> = ({ photos, musicUrl }) => 
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex">
               {photos.map((photo, index) => (
-                <div className="flex-[0_0_100%] min-w-0 relative aspect-video bg-background/50" key={index}> {/* Use a semi-transparent background */}
+                <div className="flex-[0_0_100%] min-w-0 relative aspect-video bg-background/50" key={index}> {/* Use aspect-video and contain */}
                   <Image
                     src={photo}
                     alt={`Slide ${index + 1}`}
-                    fill // Use fill instead of layout="fill" in newer Next.js
-                    style={{ objectFit: 'contain' }} // Use style prop for objectFit
+                    fill // Use fill
+                    style={{ objectFit: 'contain' }} // Ensure image fits within the container without cropping
                     className="transition-opacity duration-500 ease-in-out"
                     priority={index === 0} // Prioritize loading the first image
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Provide sizes for responsive loading
@@ -102,8 +122,10 @@ const PhotoSlideshow: React.FC<PhotoSlideshowProps> = ({ photos, musicUrl }) => 
             <ChevronRight className="h-6 w-6" />
           </Button>
 
-          {/* Audio Element (Hidden) */}
-          <audio ref={audioRef} src={musicUrl} loop preload="metadata" />
+          {/* Audio Element (Hidden but controllable) */}
+          {/* Removed the 'autoPlay' attribute to control via useEffect */}
+          <audio ref={audioRef} src={musicUrl} loop preload="auto" />
+
 
         </CardContent>
       </Card>
