@@ -19,27 +19,27 @@ const YOUR_NAME = 'Piyush'; // Added your name
 // IMPORTANT: Ensure these files exist in the `/public/images/` directory.
 // Check for exact filenames (case-sensitive) and extensions (.jpg).
 const photos = [
-  '/images/IMG-20250429-WA0112.jpg',
-  '/images/IMG-20250429-WA0113.jpg',
-  '/images/IMG-20250429-WA0114.jpg',
-  '/images/IMG-20250429-WA0115.jpg',
-  '/images/IMG-20250429-WA0116.jpg',
-  '/images/IMG-20250429-WA0117.jpg',
-  '/images/IMG-20250429-WA0118.jpg',
-  '/images/IMG-20250429-WA0119.jpg',
-  '/images/IMG-20250429-WA0120.jpg',
-  '/images/IMG-20250429-WA0122.jpg',
-  //'/IMG-20250429-WA0123.jpg', // Example: Keep only 10 images if needed
-  //'/IMG-20250429-WA0124.jpg',
-  //'/IMG-20250429-WA0125.jpg',
-  //'/IMG-20250429-WA0126.jpg',
-  //'/IMG-20250429-WA0127.jpg',
-  //'/IMG-20250429-WA0128.jpg',
-  //'/IMG-20250429-WA0129.jpg',
-  //'/IMG-20250429-WA0131.jpg',
-  //'/IMG-20250429-WA0132.jpg',
-  //'/IMG-20250429-WA0133.jpg',
-  //'/IMG-20250429-WA0134.jpg',
+  '/IMG-20250429-WA0112.jpg',
+  '/IMG-20250429-WA0113.jpg',
+  '/IMG-20250429-WA0114.jpg',
+  '/IMG-20250429-WA0115.jpg',
+  '/IMG-20250429-WA0116.jpg',
+  '/IMG-20250429-WA0117.jpg',
+  '/IMG-20250429-WA0118.jpg',
+  '/IMG-20250429-WA0119.jpg',
+  '/IMG-20250429-WA0120.jpg',
+  '/IMG-20250429-WA0122.jpg',
+  '/IMG-20250429-WA0123.jpg', 
+  '/IMG-20250429-WA0124.jpg',
+  '/IMG-20250429-WA0125.jpg',
+  '/IMG-20250429-WA0126.jpg',
+  '/IMG-20250429-WA0127.jpg',
+  '/IMG-20250429-WA0128.jpg',
+  '/IMG-20250429-WA0129.jpg',
+  '/IMG-20250429-WA0131.jpg',
+  '/IMG-20250429-WA0132.jpg',
+  '/IMG-20250429-WA0133.jpg',
+  '/IMG-20250429-WA0134.jpg',
 ];
 
 
@@ -77,7 +77,7 @@ const messages = [
 
 
 // Placeholder background music URL (replace with an actual audio file URL)
-const backgroundMusicUrl = '/background-music.mp3'; // Ensure you have this file in /public
+const backgroundMusicUrl = '/Phir_kya.mp3'; // Ensure you have this file in /public
 
 // Define the static shayari text here
 const STATIC_SHAYARI_TEXT = `
