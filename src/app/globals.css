@@ -3,10 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: 'Poppins', sans-serif; /* A slightly more playful but clean font */
-}
-
+/* Define CSS variables and base styles in separate layers */
 @layer base {
   :root {
     --background: 240 67% 94%; /* Light Lavender */
@@ -43,6 +40,7 @@ body {
     --sidebar-border: 350 50% 85%; /* Lighter Rose Gold */
     --sidebar-ring: 350 40% 60%; /* Rose Gold */
   }
+
   .dark {
     /* Define dark theme variables if needed, keeping a similar romantic feel */
     --background: 240 10% 15%; /* Dark Lavender */
@@ -87,10 +85,9 @@ body {
   }
   body {
     @apply bg-background text-foreground;
-    /* Apply gentle transitions */
+    font-family: var(--font-poppins), sans-serif;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
-  /* Ensure buttons and interactive elements use accent color */
    button, a {
      @apply transition-colors duration-200 ease-in-out;
    }
@@ -102,5 +99,3 @@ body {
       stroke: hsl(var(--accent));
    }
 }
-
-/* Removed @layer utilities block for animations as they are defined in tailwind.config.ts */

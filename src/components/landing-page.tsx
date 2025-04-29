@@ -91,4 +91,3 @@ const LandingPage: React.FC<LandingPageProps> = ({ onComplete }) => {
 };
 
 export default LandingPage;
-```
