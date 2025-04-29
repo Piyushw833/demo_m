@@ -1,3 +1,4 @@
+
 import type {Metadata} from 'next';
 import { Poppins } from 'next/font/google'; // Import Poppins
 import './globals.css';
@@ -23,12 +24,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning> {/* Add suppressHydrationWarning */}
       {/* Apply Poppins font variable to body */}
-      <body className={`${poppins.variable} font-sans antialiased`}>
+      <body className={`${poppins.variable} font-sans antialiased`} suppressHydrationWarning> {/* Add suppressHydrationWarning */}
         {children}
         <Toaster /> {/* Add Toaster provider */}
       </body>
     </html>
   );
 }
+
