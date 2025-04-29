@@ -10,7 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Toaster } from '@/components/ui/toaster';
 
 // Define girlfriend's name here or fetch from an environment variable/config
-const GIRLFRIEND_NAME = 'My Love'; // Replace with actual name
+const GIRLFRIEND_NAME = 'Maitri Babyyy <3'; // Updated girlfriend's name
 
 // Define photos for the slideshow (now 10 photos)
 const photos = [
@@ -60,8 +60,9 @@ export default function SweetSurprisePage() {
       <main className="flex min-h-screen flex-col items-center justify-center p-6 md:p-12 bg-gradient-to-br from-background to-secondary">
         <Card className="w-full max-w-2xl shadow-xl rounded-xl overflow-hidden animate-fade-in">
           <CardHeader className="bg-primary text-primary-foreground p-6 text-center">
+            {/* Updated CardTitle to use the GIRLFRIEND_NAME variable */}
             <CardTitle className="text-3xl font-bold tracking-tight">
-              Happy Birthday, {GIRLFRIEND_NAME}! &#x1F382; {/* Cake Emoji */}
+              Happy Birthday, {GIRLFRIEND_NAME}!
             </CardTitle>
           </CardHeader>
           <CardContent className="p-0">
