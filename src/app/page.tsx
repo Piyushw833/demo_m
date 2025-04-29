@@ -19,24 +19,24 @@ const YOUR_NAME = 'Piyush'; // Added your name
 // Check for exact filenames (case-sensitive) and extensions (.jpg).
 // If images are still not showing, try restarting the development server (Ctrl+C and then `npm run dev`).
 const photos = [
-  '/images/IMG-20250429-WA0112.jpg',
-  '/images/IMG-20250429-WA0113.jpg',
-  '/images/IMG-20250429-WA0114.jpg',
-  '/images/IMG-20250429-WA0115.jpg',
-  '/images/IMG-20250429-WA0116.jpg',
-  '/images/IMG-20250429-WA0117.jpg',
-  '/images/IMG-20250429-WA0118.jpg',
-  '/images/IMG-20250429-WA0119.jpg',
-  '/images/IMG-20250429-WA0120.jpg',
-  '/images/IMG-20250429-WA0121.jpg',
-  '/images/IMG-20250429-WA0122.jpg',
-  '/images/IMG-20250429-WA0123.jpg',
-  '/images/IMG-20250429-WA0124.jpg',
-  '/images/IMG-20250429-WA0125.jpg',
-  '/images/IMG-20250429-WA0126.jpg',
-  '/images/IMG-20250429-WA0127.jpg',
-  '/images/IMG-20250429-WA0128.jpg',
-  '/images/IMG-20250429-WA0129.jpg',
+  '/IMG-20250429-WA0112.jpg',
+  '/IMG-20250429-WA0113.jpg',
+  '/IMG-20250429-WA0114.jpg',
+  '/IMG-20250429-WA0115.jpg',
+  '/IMG-20250429-WA0116.jpg',
+  '/IMG-20250429-WA0117.jpg',
+  '/IMG-20250429-WA0118.jpg',
+  '/IMG-20250429-WA0119.jpg',
+  '/IMG-20250429-WA0120.jpg',
+  '/IMG-20250429-WA0121.jpg',
+  '/IMG-20250429-WA0122.jpg',
+  '/IMG-20250429-WA0123.jpg',
+  '/IMG-20250429-WA0124.jpg',
+  '/IMG-20250429-WA0125.jpg',
+  '/IMG-20250429-WA0126.jpg',
+  '/IMG-20250429-WA0127.jpg',
+  '/IMG-20250429-WA0128.jpg',
+  '/IMG-20250429-WA0129.jpg',
 ];
 
 
@@ -139,7 +139,7 @@ export default function SweetSurprisePage() {
   to { opacity: 1; transform: translateY(0); }
 }
 .animate-fade-in {
-  animation: fade-in 0.5s ease-out forwards;
+  animation: fade-in 1s ease-out forwards;
 }
 
 @keyframes slide-in {
@@ -147,7 +147,7 @@ export default function SweetSurprisePage() {
  to { opacity: 1; transform: translateX(0); }
 }
 .animate-slide-in {
- animation: slide-in 0.4s ease-out forwards;
+ animation: slide-in 2s ease-out forwards;
 }
 */
 

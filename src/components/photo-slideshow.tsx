@@ -1,3 +1,4 @@
+
 'use client';
 
 import * as React from 'react';
@@ -65,14 +66,15 @@ const PhotoSlideshow: React.FC<PhotoSlideshowProps> = ({ photos, musicUrl }) => 
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex">
               {photos.map((photo, index) => (
-                <div className="flex-[0_0_100%] min-w-0 relative aspect-video" key={index}>
+                <div className="flex-[0_0_100%] min-w-0 relative aspect-video bg-black" key={index}> {/* Added black background */}
                   <Image
                     src={photo}
                     alt={`Slide ${index + 1}`}
                     layout="fill"
-                    objectFit="cover"
+                    objectFit="contain" // Changed from "cover" to "contain"
                     className="transition-opacity duration-500 ease-in-out"
                     priority={index === 0} // Prioritize loading the first image
+                    unoptimized // Added this to potentially help with local images if optimization is causing issues
                   />
                 </div>
               ))}
@@ -118,3 +120,4 @@ const PhotoSlideshow: React.FC<PhotoSlideshowProps> = ({ photos, musicUrl }) => 
 };
 
 export default PhotoSlideshow;
+
