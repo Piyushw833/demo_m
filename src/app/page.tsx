@@ -14,10 +14,9 @@ import { Toaster } from '@/components/ui/toaster';
 const GIRLFRIEND_NAME = 'Maitriii ❤️';
 const YOUR_NAME = 'Piyush'; // Added your name
 
-// Define photos for the slideshow (now 18 photos) - MAKE SURE THESE PATHS ARE CORRECT IN YOUR /public FOLDER
-// Example: If images are in /public/images/, use '/images/IMG-XXXX.jpg'
+// Define photos for the slideshow (Ensure these files exist in /public/images/)
 const photos = [
-  '/images/IMG-20250429-WA0112.jpg', // Reverted to original paths
+  '/images/IMG-20250429-WA0112.jpg',
   '/images/IMG-20250429-WA0113.jpg',
   '/images/IMG-20250429-WA0114.jpg',
   '/images/IMG-20250429-WA0115.jpg',
@@ -36,6 +35,7 @@ const photos = [
   '/images/IMG-20250429-WA0128.jpg',
   '/images/IMG-20250429-WA0129.jpg',
 ];
+
 
 // Define the multi-page message content
 const messages = [
@@ -111,7 +111,7 @@ export default function SweetSurprisePage() {
                   <PersonalizedMessage girlfriendName={GIRLFRIEND_NAME} messages={messages} yourName={YOUR_NAME} />
                 </TabsContent>
                 <TabsContent value="slideshow" className="animate-slide-in">
-                  {/* Make sure photo paths in the 'photos' array above are correct and files exist in /public */}
+                  {/* Ensure photo paths in the 'photos' array above are correct and files exist in /public/images/ */}
                   <PhotoSlideshow photos={photos} musicUrl={backgroundMusicUrl} />
                 </TabsContent>
                 <TabsContent value="shayari" className="animate-slide-in">
@@ -147,3 +147,4 @@ export default function SweetSurprisePage() {
  animation: slide-in 0.4s ease-out forwards;
 }
 */
+
