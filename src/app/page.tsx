@@ -10,44 +10,60 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Toaster } from '@/components/ui/toaster';
 
 // Define girlfriend's name here or fetch from an environment variable/config
-const GIRLFRIEND_NAME = 'Maitri Babyyy ❤️'; // Updated girlfriend's name with heart emoji
+const GIRLFRIEND_NAME = 'Maitriii ❤️'; // Updated girlfriend's name with heart emoji
 
-// Define photos for the slideshow (now 10 photos)
+// Define photos for the slideshow (now 18 photos)
 const photos = [
-  'https://picsum.photos/seed/gf1/600/400',
-  'https://picsum.photos/seed/gf2/600/400',
-  'https://picsum.photos/seed/gf3/600/400',
-  'https://picsum.photos/seed/gf4/600/400',
-  'https://picsum.photos/seed/gf5/600/400',
-  'https://picsum.photos/seed/gf6/600/400',
-  'https://picsum.photos/seed/gf7/600/400',
-  'https://picsum.photos/seed/gf8/600/400',
-  'https://picsum.photos/seed/gf9/600/400',
-  'https://picsum.photos/seed/gf10/600/400',
+  'E:\\Maitri Birthday\\IMG-20250429-WA0112.jpg',
+  'E:\\Maitri Birthday\\IMG-20250429-WA0113.jpg',
+  'E:\\Maitri Birthday\\IMG-20250429-WA0114.jpg',
+  'E:\\Maitri Birthday\\IMG-20250429-WA0115.jpg',
+  'E:\\Maitri Birthday\\IMG-20250429-WA0116.jpg',
+  'E:\\Maitri Birthday\\IMG-20250429-WA0117.jpg',
+  'E:\\Maitri Birthday\\IMG-20250429-WA0118.jpg',
+  'E:\\Maitri Birthday\\IMG-20250429-WA0119.jpg',
+  'E:\\Maitri Birthday\\IMG-20250429-WA0120.jpg',
+  'E:\\Maitri Birthday\\IMG-20250429-WA0121.jpg',
+  'E:\\Maitri Birthday\\IMG-20250429-WA0122.jpg',
+  'E:\\Maitri Birthday\\IMG-20250429-WA0123.jpg',
+  'E:\\Maitri Birthday\\IMG-20250429-WA0124.jpg',
+  'E:\\Maitri Birthday\\IMG-20250429-WA0125.jpg',
+  'E:\\Maitri Birthday\\IMG-20250429-WA0126.jpg',
+  'E:\\Maitri Birthday\\IMG-20250429-WA0127.jpg',
+  'E:\\Maitri Birthday\\IMG-20250429-WA0128.jpg',
+  'E:\\Maitri Birthday\\IMG-20250429-WA0129.jpg',
 ];
 
 // Define the multi-page message content
 const messages = [
   // Page 1
-  "Happy Birthday! 🎉 On this special day, I just wanted to remind you how incredibly amazing you are and how much joy you bring into my life every single day.",
+  "Euuuu euuu euuuu My baby turning 21 damn Happy happy happy happy happiest birthdayyyyyyy to my 21 yr old hottiee😘❤",
   // Page 2
-  "You make the world a brighter place just by being in it. I cherish every moment we spend together, from the big adventures to the quiet nights in.",
+  "I know u were expecting this msg and here I am to make ur expectations complete🥰 Maitriiiiii happyyy birthday to youu babyyyy❤ Gifts will be given to youuu sooonnn dont worry about it. Aaj dunga kal dunga kehte kehte 1 sal nikal gya gift nai de paya me Maybe I am not completing ur expectations fully.😭.",
   // Page 3
-  "Remember that time we [insert shared memory]? Thinking about it always brings a smile to my face. Moments like those are treasures.",
+  "Abhi thoda RR sunle, Yar me nai de pata hu mera 100% relationship me lekin dene ki koshish jarur krta hu Sachme kuch na kuch kam hote hai.",
   // Page 4
-  "I love your [mention a specific quality, e.g., kindness, laugh, determination]. It's one of the many things that make you uniquely you.",
+  "Anyways this is the something issue we are currently facing otherwise I hope there's no issue then. And I (we) will fix this soooon. I am so lucky to have you my motiii🥹 Bas me dikhata nai hu kyuki fir najar lg jati hai.",
   // Page 5
-  "Thank you for your patience, your understanding, and for always being there for me. You're my rock and my best friend.",
+  "Me sachme tuzse pyar krta hu I did love you, I do love you and I will love you alwaysssss😩❤ Whatever is happening between us is just another phase of relationship.💞 So take it calm and we have to find peace in the relationship not chaos. I am happy that I am with you on your birthday consecutively 4th year😎 Thanks for let me be in your life.",
   // Page 6
-  "Looking ahead, I'm so excited for all the adventures still to come and the memories we'll create together.",
+  "Meri cutiieee, merii jaan, meri pyaari, meri pookieee, mera nandi bail, meri makadi, mera chain, meri pillu😂, meri 1000000000000000000000000000000 guna pyarrii pyarrii pyarrii baby ko janm din ki boht boht shubhkamnae",
   // Page 7
-  "Your dreams are important, and I'll always be here cheering you on every step of the way. Never stop reaching for the stars.",
+  "Jald hi tuze achi placement mil jae, jald hi tu acha idea dhunde, jald hi tu kuch crazy krde yehi meri bhagwan se prarthana hai Aur dher sara paisa kamaye aur muze party de 😩",
   // Page 8
-  "Every day with you feels like a gift. You've added so much color and happiness to my world.",
+  "Thank youu thank youu thank youuu so much for everything maitriiii tu boht sweet hai tu boht pyaaari hai tu boht caring hai tu boht achi hai pta nai kam pd jata hu me tuze khush rkhne me I am reallyyyy sorryyy for every single mistake I made and allow me to make more aur tuze gussa du 🤣 again sorryyy.",
   // Page 9
-  "May your birthday be filled with everything you wish for – laughter, love, cake, and maybe a little bit of sparkle!",
+  "Yar tu gussa krte hue achi nai lgti hai isiliye kehta hu me gussa mt krte ja. Aur kuch nai hota hai yar ittu se bat me muze chimti le lete ja gussa nai krte ja fir wo batein bighad jati hai aur fir zagda.",
   // Page 10
-  "Wishing you the happiest of birthdays, my love. May this year be your best one yet. I love you more than words can say."
+  "Baki toh tere zulfein tere adae tera badan teri khushbho tere oth tera ye ani tera wo sab ekdm perfect package kya batau tuze Kitna acha lga tha muze jab tune surprise diya tha muze ghr aake nai bhula hu me Boht pyara lga tha muze jab tu khaterdari kr rhi thi meri nai bhula hu me Boht sexi lga tha muze jab tu soyi thi mere sath mere ghrpe a dream 🥹❤ Aur me tuze ek gift nai de paya 🫠",
+  // Page 11
+  " I am sorryyy lekin muze chod mt de me tuze ek sath boht gifts dunga fir tu pagal ho jaegi ki pehle gift kholu ki muze 🥰 Kya chumma leti hai meri item ekdm tadakta fadakta jan hi aa jati hai 😌 Aur tere stamina ko 🫡 200 topo ki salami! Crazy affection 💦🥰🤣",
+  // Page 12
+  " Bau hot che mari dikri su boilu tane Tane su dikkat che aau gusse hui jais bilkul mara mate gussa nai krvanu Badda pyara che apda bevanu to kem aavu karis KALE SHAME MILVNAU JAMECHE KE TANE MANE WISH KARVANU CHE BATAO MANE ane have sab bhuli jao hu je pn boilo chu Aais ke tane khabar ma bilkul bhi gusso nai krvanu",
+  // Page 13
+  "Etla pyari che mari motuuu tane upar gusso saras nai lage tu aavech saras lage che mane 😘😘😘😘😘 Dher saro badhiyao tane mubarak ho janamdine mate Ane tara mu ma 1000 kilo na cake mera mota sota pota lota kota 😭😭❤❤❤",
+  // Page 14
+  "I loveeee youuuu manuuu babbyyy 😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘 Missssingg uuuuuu cant express🫠🥹 Taro dearest navra, Pissssss",
 ];
 
 

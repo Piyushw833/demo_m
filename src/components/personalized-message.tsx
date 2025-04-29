@@ -73,7 +73,7 @@ const PersonalizedMessage: React.FC<PersonalizedMessageProps> = ({ girlfriendNam
               <Heart className="w-6 h-6 animate-pulse fill-current" />
             </div>
             <p className="text-lg font-medium text-primary-foreground">
-              [Your Name] {/* Replace with your actual name */}
+              Piyush {/* Replace with your actual name */}
             </p>
           </div>
         )}
