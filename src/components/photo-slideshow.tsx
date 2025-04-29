@@ -15,7 +15,8 @@ interface PhotoSlideshowProps {
 }
 
 const PhotoSlideshow: React.FC<PhotoSlideshowProps> = ({ photos, musicUrl }) => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay({ delay: 4000, stopOnInteraction: false })]);
+  // Increase the delay to 6000ms (6 seconds) to slow down the slideshow
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay({ delay: 6000, stopOnInteraction: false })]);
   const audioRef = React.useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = React.useState(false);
   const [isMuted, setIsMuted] = React.useState(false);
@@ -66,15 +67,16 @@ const PhotoSlideshow: React.FC<PhotoSlideshowProps> = ({ photos, musicUrl }) => 
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex">
               {photos.map((photo, index) => (
-                <div className="flex-[0_0_100%] min-w-0 relative aspect-video bg-black" key={index}> {/* Added black background */}
+                <div className="flex-[0_0_100%] min-w-0 relative aspect-video bg-background/50" key={index}> {/* Use a semi-transparent background */}
                   <Image
                     src={photo}
                     alt={`Slide ${index + 1}`}
-                    layout="fill"
-                    objectFit="contain" // Changed from "cover" to "contain"
+                    fill // Use fill instead of layout="fill" in newer Next.js
+                    style={{ objectFit: 'contain' }} // Use style prop for objectFit
                     className="transition-opacity duration-500 ease-in-out"
                     priority={index === 0} // Prioritize loading the first image
-                    unoptimized // Added this to potentially help with local images if optimization is causing issues
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Provide sizes for responsive loading
+                    onError={(e) => console.error(`Error loading image ${photo}:`, e.currentTarget.src)} // Add error handling
                   />
                 </div>
               ))}
@@ -120,4 +122,3 @@ const PhotoSlideshow: React.FC<PhotoSlideshowProps> = ({ photos, musicUrl }) => 
 };
 
 export default PhotoSlideshow;
-
