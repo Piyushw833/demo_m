@@ -14,7 +14,10 @@ import { Toaster } from '@/components/ui/toaster';
 const GIRLFRIEND_NAME = 'Maitriii ❤️';
 const YOUR_NAME = 'Piyush'; // Added your name
 
-// Define photos for the slideshow (Ensure these files exist in /public/images/)
+// Define photos for the slideshow.
+// IMPORTANT: Ensure these files exist in the `/public/images/` directory.
+// Check for exact filenames (case-sensitive) and extensions (.jpg).
+// If images are still not showing, try restarting the development server (Ctrl+C and then `npm run dev`).
 const photos = [
   '/images/IMG-20250429-WA0112.jpg',
   '/images/IMG-20250429-WA0113.jpg',
@@ -111,7 +114,7 @@ export default function SweetSurprisePage() {
                   <PersonalizedMessage girlfriendName={GIRLFRIEND_NAME} messages={messages} yourName={YOUR_NAME} />
                 </TabsContent>
                 <TabsContent value="slideshow" className="animate-slide-in">
-                  {/* Ensure photo paths in the 'photos' array above are correct and files exist in /public/images/ */}
+                  {/* Pass the photos array */}
                   <PhotoSlideshow photos={photos} musicUrl={backgroundMusicUrl} />
                 </TabsContent>
                 <TabsContent value="shayari" className="animate-slide-in">
@@ -147,4 +150,5 @@ export default function SweetSurprisePage() {
  animation: slide-in 0.4s ease-out forwards;
 }
 */
+
 
