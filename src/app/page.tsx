@@ -4,34 +4,35 @@ import * as React from 'react';
 import { MessageCircleHeart, Images, Feather } from 'lucide-react';
 import PersonalizedMessage from '@/components/personalized-message';
 import PhotoSlideshow from '@/components/photo-slideshow';
-import AiShayari from '@/components/ai-shayari'; // Renamed import
+import StaticShayari from '@/components/static-shayari'; // Import the new static component
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Toaster } from '@/components/ui/toaster';
 
 // Define girlfriend's name here or fetch from an environment variable/config
-const GIRLFRIEND_NAME = 'Maitriii ❤️'; // Updated girlfriend's name with heart emoji
+const GIRLFRIEND_NAME = 'Maitriii ❤️';
 
-// Define photos for the slideshow (now 18 photos)
+// Define photos for the slideshow (now 18 photos) - MAKE SURE THESE PATHS ARE CORRECT IN YOUR /public FOLDER
+// Example: If images are in /public/images/, use '/images/IMG-XXXX.jpg'
 const photos = [
-  'E:\\Maitri Birthday\\IMG-20250429-WA0112.jpg',
-  'E:\\Maitri Birthday\\IMG-20250429-WA0113.jpg',
-  'E:\\Maitri Birthday\\IMG-20250429-WA0114.jpg',
-  'E:\\Maitri Birthday\\IMG-20250429-WA0115.jpg',
-  'E:\\Maitri Birthday\\IMG-20250429-WA0116.jpg',
-  'E:\\Maitri Birthday\\IMG-20250429-WA0117.jpg',
-  'E:\\Maitri Birthday\\IMG-20250429-WA0118.jpg',
-  'E:\\Maitri Birthday\\IMG-20250429-WA0119.jpg',
-  'E:\\Maitri Birthday\\IMG-20250429-WA0120.jpg',
-  'E:\\Maitri Birthday\\IMG-20250429-WA0121.jpg',
-  'E:\\Maitri Birthday\\IMG-20250429-WA0122.jpg',
-  'E:\\Maitri Birthday\\IMG-20250429-WA0123.jpg',
-  'E:\\Maitri Birthday\\IMG-20250429-WA0124.jpg',
-  'E:\\Maitri Birthday\\IMG-20250429-WA0125.jpg',
-  'E:\\Maitri Birthday\\IMG-20250429-WA0126.jpg',
-  'E:\\Maitri Birthday\\IMG-20250429-WA0127.jpg',
-  'E:\\Maitri Birthday\\IMG-20250429-WA0128.jpg',
-  'E:\\Maitri Birthday\\IMG-20250429-WA0129.jpg',
+  '/images/IMG-20250429-WA0112.jpg', // Replace with actual paths in /public
+  '/images/IMG-20250429-WA0113.jpg',
+  '/images/IMG-20250429-WA0114.jpg',
+  '/images/IMG-20250429-WA0115.jpg',
+  '/images/IMG-20250429-WA0116.jpg',
+  '/images/IMG-20250429-WA0117.jpg',
+  '/images/IMG-20250429-WA0118.jpg',
+  '/images/IMG-20250429-WA0119.jpg',
+  '/images/IMG-20250429-WA0120.jpg',
+  '/images/IMG-20250429-WA0121.jpg',
+  '/images/IMG-20250429-WA0122.jpg', // Added more placeholders up to 18
+  '/images/IMG-20250429-WA0123.jpg',
+  '/images/IMG-20250429-WA0124.jpg',
+  '/images/IMG-20250429-WA0125.jpg',
+  '/images/IMG-20250429-WA0126.jpg',
+  '/images/IMG-20250429-WA0127.jpg',
+  '/images/IMG-20250429-WA0128.jpg',
+  '/images/IMG-20250429-WA0129.jpg',
 ];
 
 // Define the multi-page message content
@@ -70,15 +71,22 @@ const messages = [
 // Placeholder background music URL (replace with an actual audio file URL)
 const backgroundMusicUrl = '/background-music.mp3'; // Ensure you have this file in /public
 
+// Define the static shayari text here
+const STATIC_SHAYARI_TEXT = `Your eyes twinkle like the stars so bright,
+Filling my world with pure delight.
+On your birthday, my love, my heart sings,
+Happy Birthday, my queen, joy you bring!
+
+(Replace this with your actual shayari)`;
+
 export default function SweetSurprisePage() {
   return (
     <>
       <main className="flex min-h-screen flex-col items-center justify-center p-6 md:p-12 bg-gradient-to-br from-background to-secondary">
         <Card className="w-full max-w-2xl shadow-xl rounded-xl overflow-hidden animate-fade-in">
           <CardHeader className="bg-primary text-primary-foreground p-6 text-center">
-            {/* Updated CardTitle to use the GIRLFRIEND_NAME variable */}
             <CardTitle className="text-3xl font-bold tracking-tight">
-              Happy Birthday, {GIRLFRIEND_NAME}!
+              Happy Birthday Maitri Babyyy ❤️ {/* Updated title */}
             </CardTitle>
           </CardHeader>
           <CardContent className="p-0">
@@ -90,8 +98,8 @@ export default function SweetSurprisePage() {
                 <TabsTrigger value="slideshow" className="flex items-center gap-2 py-3 text-sm md:text-base">
                   <Images className="w-5 h-5" /> Photos
                 </TabsTrigger>
-                <TabsTrigger value="shayari" className="flex items-center gap-2 py-3 text-sm md:text-base"> {/* Renamed value and text */}
-                  <Feather className="w-5 h-5" /> Shayari {/* Renamed text */}
+                <TabsTrigger value="shayari" className="flex items-center gap-2 py-3 text-sm md:text-base">
+                  <Feather className="w-5 h-5" /> Shayari
                 </TabsTrigger>
               </TabsList>
               <div className="p-6">
@@ -100,10 +108,12 @@ export default function SweetSurprisePage() {
                   <PersonalizedMessage girlfriendName={GIRLFRIEND_NAME} messages={messages} />
                 </TabsContent>
                 <TabsContent value="slideshow" className="animate-slide-in">
+                  {/* Make sure photo paths in the 'photos' array above are correct and files exist in /public */}
                   <PhotoSlideshow photos={photos} musicUrl={backgroundMusicUrl} />
                 </TabsContent>
-                <TabsContent value="shayari" className="animate-slide-in"> {/* Renamed value */}
-                  <AiShayari girlfriendName={GIRLFRIEND_NAME} /> {/* Renamed component */}
+                <TabsContent value="shayari" className="animate-slide-in">
+                  {/* Render the static shayari component */}
+                  <StaticShayari shayariText={STATIC_SHAYARI_TEXT} />
                 </TabsContent>
               </div>
             </Tabs>
