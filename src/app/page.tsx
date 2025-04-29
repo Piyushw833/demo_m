@@ -10,7 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Toaster } from '@/components/ui/toaster';
 
 // Define girlfriend's name here or fetch from an environment variable/config
-const GIRLFRIEND_NAME = 'Maitri Babyyy <3'; // Updated girlfriend's name
+const GIRLFRIEND_NAME = 'Maitri Babyyy ❤️'; // Updated girlfriend's name with heart emoji
 
 // Define photos for the slideshow (now 10 photos)
 const photos = [
